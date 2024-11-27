@@ -28,10 +28,11 @@ class MessageNotify implements MessageContract
         return $this->payload;
     }
 
-    public function notifySMS(): static
+    public function notifySMS(): MessageSMSNotify
     {
         $this->type = 'sms';
-        return $this;
+        $this->payload = (new MessageSMSNotify($this->notifiable, $this));
+        return $this->payload;
     }
 
     public function getPayload()

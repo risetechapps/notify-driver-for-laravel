@@ -10,14 +10,14 @@ class MessageEmailNotify
     protected array $content;
     protected array $attach = [];
     protected string $name;
-    protected string $theme;
-    protected string $line;
+    protected string $theme = 'default';
+    protected ?string $line = null;
     protected array $lineHeader = [];
     protected array $lineFooter = [];
     protected array $action = [];
     private MessageNotify $messageNotify;
-    protected string $subjectMessage;
-
+    protected ?string $subjectMessage = null;
+    protected $signature = null;
 
     public function __construct($notifiable, MessageNotify $messageNotify)
     {
@@ -110,6 +110,16 @@ class MessageEmailNotify
         return $this;
     }
 
+    public function setSignature(string $signature): static
+    {
+        if (is_null($this->signature)) {
+            $this->signature = [];
+        }
+
+        $this->signature[] = $signature;
+        return $this;
+    }
+
     public function send(): MessageNotify
     {
         return $this->messageNotify;
@@ -117,7 +127,7 @@ class MessageEmailNotify
 
     public function toArray(): array
     {
-        $data = array_merge($this->content, [
+        $data = array_merge($this->content ?? [], [
             'email' => $this->email ?? '',
             'name' => $this->name ?? '',
             'subject' => $this->subject ?? '',
@@ -144,6 +154,10 @@ class MessageEmailNotify
 
         if (count($this->action) > 0) {
             $data['action'] = $this->action;
+        }
+
+        if (!is_null($this->signature) && count($this->signature) > 0) {
+            $data['signature'] = $this->signature;
         }
 
         return $data;
