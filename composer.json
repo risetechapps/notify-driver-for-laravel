@@ -1,12 +1,12 @@
 {
-    "name": "risetechapps/notify-driver",
+    "name": "risetechapps/notify-driver-for-laravel",
     "description": "",
     "keywords": [
         "risetechapps",
         "notify",
         "driver"
     ],
-    "homepage": "https://github.com/risetechapps/notify-driver",
+    "homepage": "https://github.com/risetechapps/notify-driver-for-laravel",
     "license": "MIT",
     "type": "library",
     "authors": [
