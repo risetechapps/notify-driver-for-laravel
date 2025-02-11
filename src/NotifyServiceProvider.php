@@ -22,10 +22,6 @@ class NotifyServiceProvider extends ServiceProvider
         });
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
-//        Event::listen(AddressCreateOrUpdateDefaultEvent::class, Listeners\AddressCreateOrUpdateDefaultListener::class);
-//        Event::listen(AddressCreateOrUpdateDeliveryEvent::class, Listeners\AddressCreateOrUpdateDeliveryListener::class);
-//        Event::listen(AddressCreateOrUpdateBillingEvent::class, Listeners\AddressCreateOrUpdateBillingListener::class);
     }
 
     /**
