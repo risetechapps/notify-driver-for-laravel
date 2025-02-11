@@ -1,37 +1,87 @@
-# Very short description of the package
+# Laravel Notify Driver
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/RiseTechApps\/address.svg?style=flat-square)](https://packagist.org/packages/RiseTechApps\/address)
-[![Total Downloads](https://img.shields.io/packagist/dt/RiseTechApps\/address.svg?style=flat-square)](https://packagist.org/packages/RiseTechApps\/address)
-![GitHub Actions](https://github.com/RiseTechApps\/address/actions/workflows/main.yml/badge.svg)
+## 📌 Sobre o Projeto
+O **Laravel Notify Driver** é um package para Laravel que falicita a integração com Notify para enviar email, sms e notificações push.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+## ✨ Funcionalidades
+- 🔑 **Envia email** envie email sem burocracia
+- 🏷 **Envia SMS** envie sms sem burocracia
 
-## Installation
+---
 
-You can install the package via composer:
+## 🚀 Instalação
 
+### 1️⃣ Requisitos
+Antes de instalar, certifique-se de que seu projeto atenda aos seguintes requisitos:
+- PHP >= 8.0
+- Laravel >= 10
+- Composer instalado
+
+### 2️⃣ Instalação do Package
+Execute o seguinte comando no terminal:
 ```bash
-
-composer require RiseTechApps\apps/address
+  composer require risetechapps/notify-driver-for-laravel
 ```
 
-### Changelog
+### 3️⃣ Configurações
+```php
+    //services.php
+    return [
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
 
-## Contributing
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
+    ],
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
+    ],
 
-### Security
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
 
-If you discover any security related issues, please email apps@RiseTechApps\.com.br instead of using the issue tracker.
+    'notify' => [
+        'url' => env('NOTIFY_URL', ''),
+        'key' => env('NOTIFY_KEY', ''),
+        'from_name' => env('NOTIFY_FROM_NAME', ''),
+    ]
 
-## Credits
+];
+```
 
--   [Rise Tech](https://github.com/RiseTechApps\apps)
--   [All Contributors](../../contributors)
+---
 
-## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+## 🛠 Contribuição
+Sinta-se à vontade para contribuir! Basta seguir estes passos:
+1. Faça um fork do repositório
+2. Crie uma branch (`feature/nova-funcionalidade`)
+3. Faça um commit das suas alterações
+4. Envie um Pull Request
+
+---
+
+## 📜 Licença
+Este projeto é distribuído sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+💡 **Desenvolvido por [Rise Tech](https://risetech.com.br)**
+
