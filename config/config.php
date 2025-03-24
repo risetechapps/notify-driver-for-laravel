@@ -5,4 +5,6 @@
  */
 return [
 
+    'key' => env('NOTIFY_KEY', ''),
+    'from_name' => env('NOTIFY_FROM_NAME', ''),
 ];
