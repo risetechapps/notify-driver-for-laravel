@@ -22,6 +22,12 @@ class NotifyServiceProvider extends ServiceProvider
         });
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/config.php' => config_path('notify.php'),
+            ], 'config');
+        }
     }
 
     /**
@@ -29,6 +35,8 @@ class NotifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'notify');
+
         // Register the main class to use with the facade
         $this->app->singleton('notify', function () {
             return new Notify;
