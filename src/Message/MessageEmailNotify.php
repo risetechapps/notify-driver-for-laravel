@@ -133,7 +133,7 @@ class MessageEmailNotify
             'subject' => $this->subject ?? '',
             'theme' => $this->theme ?? 'default',
             'subject_message' => $this->subjectMessage ?? '',
-            'app_name' => config('services.notify.from_name')
+            'app_name' => config('notify.from_name')
         ]);
 
         if (count($this->attach) > 0) {
