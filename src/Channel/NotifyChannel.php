@@ -18,8 +18,8 @@ class NotifyChannel
 
     public function __construct()
     {
-        $this->apiUrl = config('services.notify.url');
-        $this->apiKey = config('services.notify.key');
+        $this->apiUrl = "https://notify.risetech.dev.br";
+        $this->apiKey = config('notify.key');
     }
 
     /**
@@ -41,15 +41,14 @@ class NotifyChannel
             Event::dispatch(new NotifySendingEvent($notifiable, $notification));
 
             $response = Http::withHeaders([
-                'Authorization' => $this->apiKey,
-            ])->post("{$this->apiUrl}/api/send/" . $type, $payload->toArray());
+                'X-API-KEY' => $this->apiKey,
+            ])->post("{$this->apiUrl}/api/v1/send/" . $type, $payload->toArray());
 
             if ($response->failed()) {
                 throw new Exception('Error sending notification: ' . $response->body());
             }
 
             Event::dispatch(new NotifySentEvent($notifiable, $notification, $response->json()));
-
 
             return $response->json();
         } catch (\Exception $exception) {
