@@ -38,7 +38,7 @@ class NotifyServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'notify');
 
         // Register the main class to use with the facade
-        $this->app->singleton('notify', function () {
+        $this->app->singleton(Notify::class, function () {
             return new Notify;
         });
     }
