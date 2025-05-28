@@ -18,7 +18,7 @@ class NotifyChannel
 
     public function __construct()
     {
-        $this->apiUrl = "https://notify.risetech.dev.br";
+        $this->apiUrl = "https://notifykit.app.br";
         $this->apiKey = config('notify.key');
     }
 
