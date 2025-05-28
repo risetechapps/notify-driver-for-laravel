@@ -25,7 +25,7 @@ Certifique-se de que seu projeto atende aos seguintes requisitos:
 Execute o comando abaixo no terminal:
 
 ```bash
-composer require risetechapps/notify-driver-for-laravel
+  composer require risetechapps/notify-driver-for-laravel
 ```
 
 ### 3️⃣ Configuração
