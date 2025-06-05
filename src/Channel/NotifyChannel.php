@@ -59,7 +59,7 @@ class NotifyChannel
         } catch (\Exception $exception) {
             Event::dispatch(new NotifyFailedEvent($notifiable, $notification, $exception));
 
-            logglyError()->
+            logglyError()
                 ->withProperties(['notifiable' => $notifiable, 'notification' => $notification])
                 ->exception($exception)->log("Error by sending notification");
 
