@@ -53,16 +53,15 @@ class NotifyChannel
             Event::dispatch(new NotifySentEvent($notifiable, $notification, $responseJson));
 
             logglyInfo()->performedOn(self::class)
-                ->withProperties(['notifiable' => $notifiable, 'notification' => $notification, 'response' => $responseJson])
-                ->withTags(['action' => 'send'])->log("Notification sent");
+                ->withProperties(['notifiable' => $notifiable, 'notification' => $notification, 'response' => $responseJson])->log("Notification sent");
 
             return $responseJson;
         } catch (\Exception $exception) {
             Event::dispatch(new NotifyFailedEvent($notifiable, $notification, $exception));
 
-            logglyError()->performedOn(self::class)
+            logglyError()->
                 ->withProperties(['notifiable' => $notifiable, 'notification' => $notification])
-                ->exception($exception)->withTags(['action' => 'send'])->log("Error by sending notification");
+                ->exception($exception)->log("Error by sending notification");
 
             throw $exception;
         }
